@@ -1,0 +1,28 @@
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"eth_accounts","params":[],"id":67}' 127.0.0.1:101
+
+# new contract
+data = {
+  from: h.eth_accounts[0],
+  gas: "0x47b760",
+  data: a
+}
+
+h.personal_unlockAccount h.eth_accounts[0], '123456'
+b = h.eth_sendTransaction data
+h.eth_getTransactionReceipt(b)
+
+
+eth[0] = 0x8326d27ef7e7e1a1d76a4512d0bd71d16a4deb87
+add    = 0xca6a3c1bbab55c6527115a4cf3a580e1df27494b
+
+# wabi deposit
+from = h.eth_accounts[0]
+data = "0xa9059cbb000000000000000000000000af6e8c85047ee494b96a9fd8e09262c5cb3034000000000000000000000000000000000000000000000000056bc75e2d63100000"
+h.personal_unlockAccount from, "123456"
+a = h.eth_sendTransaction(from: from, to: "0x8d39ea84597aaa33e3b47c3ca58dc1195f8a4c98", data: data)
+h.eth_getTransactionByHash(a)
+
+
+
+
+
